@@ -1,0 +1,104 @@
+---
+title: "Accessing Marker Data from T3"
+author: "Jeff Neyhart"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{simulation_data_access}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+
+## Introduction
+
+This vignette provides instructions to access the marker data from The Triticeae Toolbox (T3) that were used in several simulation projects.
+
+
+## Data Access Steps
+
+1. First load the package in R with the command 
+```{r}
+library(pbsimData)
+```
+
+### Spring Two-Row CAP Lines
+
+2. In the package there is a saved vector of two-row barley CAP line names. Call
+it with the command as so: 
+```{r, eval = TRUE}
+data("s2_cap_lines", package = "pbsimData")
+```
+
+Next, save the vector of line names to the clipboard by running the folowing
+```{r}
+write.table(s2_cap_lines, "clipboard", quote = F, row.names = F, col.names = F)
+```
+
+3. Go to the website of [The Triticeae Toolbox](https://triticeaetoolbox.org/barley/). There is no need to register to access the data.
+
+4. Under "Quick Links" on the left-hand side, click on "Lines."
+
+5. Paste the line names into the text box labelled "Name" and hit the "Search" button at the bottom. After a short while, the lines will have been populated in the box underneath the "Search" button. `r length(s2_cap_lines)` lines should be present. Click the "Add to Selected" button to save the lines.
+
+6. Under "Quick Links" on the left-hand side, click on "Markers."
+
+7. Under "search using pattern matching," use the following regular expression to search for markers (without quotes): `^[1-2]{2}`. 3,140 markers should be selected (you will see this number next to the "Markers" link).
+
+8. Under the "Download" tab at the top of the page, click on "Genotype and Phenotype Data." 
+
+9. Before downloading the information, select a genetic map by clicking the "genetic map" button. Select the map "Barley, 2011 OPA, Consensus."
+
+10. Set the follwing filter criteria using the text boxes: Minimum MAF >= 0, Remove markers missing > 100% of data, and Remove lines missing > 100% of data.
+
+11. Hit the "Create file" button for the **rrBLUP** encoding. The database may take a little while to create the download file. Grab some coffee.
+
+12. When the file creation is complete, a "Download Zip file of results" button will appear at the bottom. Click it to download the file.
+
+13. Unzip the file to retrive the contents. The file "genotype.hmp.txt" will contain the genotype calls for each line at each SNP, as well as SNP information such as name, allele, chromosome, and genetic position. This can be used in the `CAP_data_preparation.R` script.
+
+
+
+
+
+### Spring Six-Row CAP Lines
+
+2. In the package there is a saved vector of six-row barley CAP line names. Call
+it with the command as so: 
+```{r, eval = TRUE}
+data("s6_cap_lines", package = "pbsimData")
+```
+
+Next, save the vector of line names to the clipboard by running the folowing
+```{r}
+write.table(s6_cap_lines, "clipboard", quote = F, row.names = F, col.names = F)
+```
+
+3. Go to the website of [The Triticeae Toolbox](https://triticeaetoolbox.org/barley/). There is no need to register to access the data.
+
+4. Under "Quick Links" on the left-hand side, click on "Lines."
+
+5. Paste the line names into the text box labelled "Name" and hit the "Search" button at the bottom. After a short while, the lines will have been populated in the box underneath the "Search" button. `r length(s6_cap_lines)` lines should be present. Click the "Add to Selected" button to save the lines.
+
+6. Under "Quick Links" on the left-hand side, click on "Markers."
+
+7. Under "search using pattern matching," use the following regular expression to search for markers (without quotes): `^[1-2]{2}`
+
+8. Under the "Download" tab at the top of the page, click on "Genotype and Phenotype Data." 
+
+9. Before downloading the information, select a genetic map by clicking the "genetic map" button. Select the map "Barley, 2011 OPA, Consensus."
+
+10. Set the follwing filter criteria using the text boxes: Minimum MAF >= 0, Remove markers missing > 100% of data, and Remove lines missing > 100% of data.
+
+11. Hit the "Create file" button for the **rrBLUP** encoding. The database may take a little while to create the download file. Grab some coffee.
+
+12. When the file creation is complete, a "Download Zip file of results" button will appear at the bottom. Click it to download the file.
+
+13. Unzip the file to retrive the contents. The file "genotype.hmp.txt" will contain the genotype calls for each line at each SNP, as well as SNP information such as name, allele, chromosome, and genetic position. This can be used in the `CAP_data_preparation.R` script.
+
+
